@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATMStateMachine
 {
-    public class NoCardState : IATMState
+    internal class NoCardState : IATMState
     {
         private readonly ATMContext _atmContext;
         public NoCardState(ATMContext atmContext)

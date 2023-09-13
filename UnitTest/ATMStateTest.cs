@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using ATMStateMachine;
 namespace UnitTest
 {
@@ -8,13 +8,22 @@ namespace UnitTest
         [TestMethod]
         public void SimpleTest()
         {
-            var atm = new ATMContext();
+
+            var initialBalances = new Dictionary<string , int>
+            {
+                { "1234", 2500 },
+                { "2345", 3500 },
+                // Add more accounts as needed
+            };
+
+            var atm = new ATMContext( initialBalances );
+
 
             // Test inserting a card
             Assert.IsTrue(atm.InsertCard(), "Failed to insert card.");
 
             // Test entering a PIN
-            Assert.IsTrue(atm.EnterPIN("123456") ,"Entered incorrect PIN.");
+            Assert.IsTrue(atm.EnterPIN("1234") ,"Entered incorrect PIN.");
 
             // Test checking the balance
             Assert.AreEqual(2500, atm.CheckBalance(), "Balance check failed.");
@@ -34,7 +43,15 @@ namespace UnitTest
         [TestMethod]
         public void WithdrawBeforePIN()
         {
-            var atm = new ATMContext();
+            var initialBalances = new Dictionary<string , int>
+            {
+                { "1234", 2500 },
+                { "2345", 3500 },
+                // Add more accounts as needed
+            };
+
+            var atm = new ATMContext( initialBalances );
+
 
             // Test inserting a card
             Assert.IsTrue(atm.InsertCard(), "Failed to insert card.");
@@ -43,7 +60,7 @@ namespace UnitTest
             Assert.IsFalse(atm.WithDrawCash(500), "Failed to withdraw cash with incorrect PIN.");
 
             //Entering PIN and trying again
-            Assert.IsTrue(atm.EnterPIN("123456"), "Wrong PIN ");
+            Assert.IsTrue(atm.EnterPIN("1234"), "Wrong PIN ");
 
             //Now trying to withdraw cash
             Assert.IsTrue(atm.WithDrawCash(500), "Failed to withdraw cash with incorrect PIN.");
@@ -54,13 +71,20 @@ namespace UnitTest
         [TestMethod]
         public void InsufficientBalance()
         {
-            var atm = new ATMContext();
+            var initialBalances = new Dictionary<string , int>
+            {
+                { "1234", 2500 },
+                { "2345", 3500 },
+                // Add more accounts as needed
+            };
+
+            var atm = new ATMContext( initialBalances );
 
             // Test inserting a card
             Assert.IsTrue(atm.InsertCard(), "Failed to insert card.");
 
             // Test entering a PIN
-            Assert.IsTrue(atm.EnterPIN("123456"), "Entered incorrect PIN.");
+            Assert.IsTrue(atm.EnterPIN("1234"), "Entered incorrect PIN.");
 
             // Test withdrawing cash
             Assert.IsFalse(atm.WithDrawCash(5000), "Failed to withdraw cash ");
@@ -71,7 +95,15 @@ namespace UnitTest
         [TestMethod]
         public void IncorrectPIN()
         {
-            var atm = new ATMContext();
+            var initialBalances = new Dictionary<string , int>
+            {
+                { "1234", 2500 },
+                { "2345", 3500 },
+                // Add more accounts as needed
+            };
+
+            var atm = new ATMContext( initialBalances );
+
 
             // Test inserting a card
             Assert.IsTrue(atm.InsertCard(), "Failed to insert card.");
@@ -84,7 +116,15 @@ namespace UnitTest
         [TestMethod]
         public void SameState()
         {
-            var atm = new ATMContext();
+            var initialBalances = new Dictionary<string , int>
+            {
+                { "1234", 2500 },
+                { "2345", 3500 },
+                // Add more accounts as needed
+            };
+
+            var atm = new ATMContext( initialBalances );
+
 
             // Test inserting a card
             Assert.IsTrue(atm.InsertCard(), "Failed to insert card.");
@@ -93,10 +133,10 @@ namespace UnitTest
             Assert.IsFalse(atm.InsertCard(), "Failed to insert card.");
 
             // Test entering a PIN
-            Assert.IsFalse(atm.EnterPIN("1234"), "Entered incorrect PIN.");
+            Assert.IsFalse(atm.EnterPIN("12344"), "Entered incorrect PIN.");
 
             // Test entering a PIN
-            Assert.IsTrue(atm.EnterPIN("123456"), "Entered incorrect PIN.");
+            Assert.IsTrue(atm.EnterPIN("1234"), "Entered incorrect PIN.");
 
             // Test withdrawing cash
             Assert.IsTrue(atm.WithDrawCash(500), "Failed to withdraw cash ");
@@ -108,6 +148,30 @@ namespace UnitTest
             Assert.AreNotEqual(2000, atm.CheckBalance(), "Couldn't check balance");
 
 
+        }
+        [TestMethod]
+        public void MultipleWithdrawal()
+        {
+            var initialBalances = new Dictionary<string , int>
+            {
+                { "1234", 2500 },
+                { "2345", 3500 },
+                // Add more accounts as needed
+            };
+
+            var atm = new ATMContext( initialBalances );
+
+            // Test inserting a card
+            Assert.IsTrue( atm.InsertCard() , "Failed to insert card." );
+
+            // Test entering a PIN
+            Assert.IsTrue( atm.EnterPIN( "1234" ) , "Entered incorrect PIN." );
+
+            // Test withdrawing cash
+            Assert.IsTrue( atm.WithDrawCash(1000) , "Failed to withdraw cash " );
+            // Test withdrawing cash
+            Assert.IsFalse( atm.WithDrawCash( 1500 ) , "Failed to withdraw cash2 " );
+            
         }
     }
 }

@@ -11,17 +11,16 @@ namespace ATMStateMachine
     {
         public IATMState currentState;
         //public int accountBalance { get; private set; } = 2500;
-        public int accountBalance = 2500;
-        public ATMContext()
+
+        public readonly Dictionary<string , int> _balances = new();
+        public string _currentPIN;
+        
+        public ATMContext( Dictionary<string , int> balances )
         {
             // Initialize with a default state, such as NoCardState
             currentState = new NoCardState(this);
-        }
-
-        public void SetState(IATMState state)
-        {
-            currentState = state;
-           
+            _balances = balances;
+            _currentPIN = "0";
         }
 
         public bool InsertCard()
@@ -40,6 +39,7 @@ namespace ATMStateMachine
             bool result = currentState.EnterPIN(pin);
             if(result)
             {
+                _currentPIN = pin;
                 currentState =new PinEnteredState(this);
 
             }
@@ -52,17 +52,11 @@ namespace ATMStateMachine
             bool result = currentState.WithDrawCash(amount);
             if(result) 
             {
-                accountBalance -= amount;
-                if (accountBalance>0)
-                {
-                    currentState = new CashWithdrawalState(this);
+                //accountBalance -= amount;
+                
+                currentState = new CashWithdrawalState(this);
                     
-                }
-                else
-                {
-                    Console.WriteLine("Insufficient balance");
-                    return false;
-                }
+                
             }
             return result;
 
@@ -81,7 +75,7 @@ namespace ATMStateMachine
             if (currentState.CheckBalance()!=0)
             {
                 //Console.WriteLine($"Your account balance is from context {accountBalance}");
-                return accountBalance;
+                return _balances[_currentPIN];
             }
                 
             return -1;

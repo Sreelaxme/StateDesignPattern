@@ -8,7 +8,7 @@ namespace ATMStateMachine
 {
     internal class CardInsertedState : IATMState
     {
-        readonly string _pin = "123456"; //Random
+        
         private readonly ATMContext _atmContext;
         public CardInsertedState(ATMContext atmContext)
         {
@@ -21,7 +21,8 @@ namespace ATMStateMachine
 
         public bool EnterPIN(string pin)
         {
-            if (_pin == pin) 
+            //
+            if (_atmContext._balances.ContainsKey(pin))
             {
                 Console.WriteLine("Right PIN");
                 return true;

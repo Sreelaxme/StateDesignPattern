@@ -15,7 +15,8 @@ namespace ATMStateMachine
         }
         public int CheckBalance()
         {
-            int balance = _atmContext.accountBalance;
+            string currPin = _atmContext._currentPIN;
+            int balance = _atmContext._balances[currPin];
             Console.WriteLine($"Balance amount is {balance}");
             return 1;
         }
@@ -39,8 +40,8 @@ namespace ATMStateMachine
 
         public bool WithDrawCash(int amount)
         {
-
             return false;
+            
         }
     }
 }
