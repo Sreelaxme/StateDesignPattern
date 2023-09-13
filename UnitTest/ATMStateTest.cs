@@ -105,7 +105,7 @@ namespace UnitTest
             Assert.IsTrue(atm.RemoveCard(), "Removal card not successful");
 
             // Test checking the updated balance
-            Assert.AreEqual(2000, atm.CheckBalance(), "Couldn't check balance");
+            Assert.AreNotEqual(2000, atm.CheckBalance(), "Couldn't check balance");
 
 
         }

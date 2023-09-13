@@ -8,14 +8,14 @@ namespace ATMStateMachine
 {
     internal class CashWithdrawalState : IATMState
     {
-        private ATMContext atmContext;
+        private readonly ATMContext _atmContext;
         public CashWithdrawalState(ATMContext context)
         {
-            atmContext = context;
+            _atmContext = context;
         }
         public int CheckBalance()
         {
-            int balance = atmContext.accountBalance;
+            int balance = _atmContext.accountBalance;
             Console.WriteLine($"Balance amount is {balance}");
             return 1;
         }

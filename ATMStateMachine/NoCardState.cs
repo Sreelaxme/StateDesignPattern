@@ -8,10 +8,10 @@ namespace ATMStateMachine
 {
     public class NoCardState : IATMState
     {
-        private ATMContext atmContext;
+        private readonly ATMContext _atmContext;
         public NoCardState(ATMContext atmContext)
         {
-            this.atmContext = atmContext;
+            _atmContext = atmContext;
         }
 
         public int CheckBalance()
