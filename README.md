@@ -8,4 +8,7 @@ The State design pattern is a behavioral design pattern that allows an object to
 - **State**: The State interface defines a set of methods that concrete state classes must implement. These methods represent the actions or behaviors associated with a particular state.
 - **Concrete State**: These are the classes that implement the State interface. Each concrete state class represents a specific state of the context and provides the implementation for state-specific behavior.
 
+## ATM State Machine Project
+
+This project implements an ATM (Automated Teller Machine) using the State design pattern. It defines various states such as CardInserted, CashWithdrawal, NoCard, and PinEntered, each with specific behaviors. The State pattern allows the ATM to transition between these states based on user interactions.
 
