@@ -11,4 +11,5 @@ The State design pattern is a behavioral design pattern that allows an object to
 ## ATM State Machine Project
 
 This project implements an ATM (Automated Teller Machine) using the State design pattern. It defines various states such as CardInserted, CashWithdrawal, NoCard, and PinEntered, each with specific behaviors. The State pattern allows the ATM to transition between these states based on user interactions.
+![STatediagram](https://github.com/Sreelaxme/StateDesignPattern/blob/master/state.jpg)
 
