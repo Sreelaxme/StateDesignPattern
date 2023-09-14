@@ -1,13 +1,28 @@
-﻿using System;
+﻿/******************************************************************************
+* Filename    = Program.cs
+*
+* Author      = Sreelaxme
+* 
+* Product     = ATM
+* 
+* Project     = MyApp
+*
+* Description =  Entry point for the ATM simulation application(Just for a trial).
+*****************************************************************************/
 using ATMStateMachine;
 namespace MyApp
 {
+    /// <summary>
+    /// Entry point for the ATM simulation application.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Main method for the ATM simulation program.
+        /// </summary>
         static void Main()
         {
 
-            
             var initialBalances = new Dictionary<string , int>
             {
                 { "1234", 2500 },

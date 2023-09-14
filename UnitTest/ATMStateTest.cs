@@ -1,10 +1,26 @@
-﻿using System;
+﻿/******************************************************************************
+* Filename    = ATMStateTest.cs
+*
+* Author      = Sreelaxme
+* 
+* Product     = ATM
+* 
+* Project     = UnitTest
+*
+* Description =  Unit tests for the ATM state machine.
+*****************************************************************************/
 using ATMStateMachine;
 namespace UnitTest
 {
+    /// <summary>
+    /// Unit tests for the ATM state machine.
+    /// </summary>
     [TestClass]
     public class ATMStateTest
     {
+        /// <summary>
+        /// Test a simple ATM transaction scenario.
+        /// </summary>
         [TestMethod]
         public void SimpleTest()
         {
@@ -39,6 +55,10 @@ namespace UnitTest
 
             
         }
+
+        /// <summary>
+        /// Test attempting to withdraw cash before entering the correct PIN.
+        /// </summary>
         [TestMethod]
         public void WithdrawBeforePIN()
         {
@@ -67,6 +87,10 @@ namespace UnitTest
 
 
         }
+
+        /// <summary>
+        /// Test attempting to withdraw more cash than the account balance.
+        /// </summary>
         [TestMethod]
         public void InsufficientBalance()
         {
@@ -91,6 +115,10 @@ namespace UnitTest
             
             
         }
+
+        /// <summary>
+        /// Test entering an incorrect PIN.
+        /// </summary>
         [TestMethod]
         public void IncorrectPIN()
         {
@@ -112,6 +140,9 @@ namespace UnitTest
 
  
         }
+        /// <summary>
+        /// Test performing going to the state again.
+        /// </summary>
         [TestMethod]
         public void SameState()
         {
@@ -148,6 +179,10 @@ namespace UnitTest
 
 
         }
+
+        /// <summary>
+        /// Test multiple cash withdrawals within the same PIN-entered state.
+        /// </summary>
         [TestMethod]
         public void MultipleWithdrawal()
         {
