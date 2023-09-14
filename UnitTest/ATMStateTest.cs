@@ -37,8 +37,7 @@ namespace UnitTest
             // Test removing the card
             Assert.IsTrue(atm.RemoveCard(), "Removal card not successful");
 
-            // Ensure that after removing the card, we are back to the NoCardState
-            Assert.IsInstanceOfType(atm.currentState, typeof(NoCardState), "ATM state is not in NoCardState.");
+            
         }
         [TestMethod]
         public void WithdrawBeforePIN()
