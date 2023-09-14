@@ -16,3 +16,5 @@ This project implements an ATM (Automated Teller Machine) using the State design
 ### Class Diagram
 ![Depend](https://github.com/Sreelaxme/StateDesignPattern/blob/master/depend.jpg)
 
+## Environment
+The project builds and runs with Visual Studio Community 2022.
